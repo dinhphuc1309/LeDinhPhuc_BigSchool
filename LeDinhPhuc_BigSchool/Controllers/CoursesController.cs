@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Windows;
 
 namespace LeDinhPhuc_BigSchool.Controllers
 {
@@ -105,10 +106,22 @@ namespace LeDinhPhuc_BigSchool.Controllers
             }
         }
 
-        //public ActionResult DeleteMine(int Id)
-        //{
+        public ActionResult DeleteMine(int Id)
+        {
+            try
+            {
+                var courses = context.Courses.Find(Id);
+                context.Courses.Remove(courses);
+                context.SaveChanges();
+                
+            }
+            catch
+            {
 
-        //}
+                MessageBox.Show("Có học viên đăng ký không xóa được");
+            }
+            return RedirectToAction("Mine");
+        }
 
         public ActionResult LectureIamGoing()
         {
