@@ -9,21 +9,34 @@ namespace LeDinhPhuc_BigSchool.Models
     [Table("Course")]
     public partial class Course
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Course()
+        {
+            Attendances = new HashSet<Attendance>();
+        }
+
         public int Id { get; set; }
 
         [StringLength(128)]
         public string LecturerId { get; set; }
 
+        [Required]
         [StringLength(255)]
         public string Place { get; set; }
 
+        [Required]
         public DateTime? DateTime { get; set; }
 
+        [Required]
         public int? CategoryId { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Attendance> Attendances { get; set; }
 
         public virtual Category Category { get; set; }
 
         public List<Category> ListCategory = new List<Category>();
+        public string Name;
+        public string LectureName;
     }
 }

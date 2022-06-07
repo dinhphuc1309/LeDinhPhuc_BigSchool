@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "Mine";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Mine</h2>
+
+<div class="row">
+    <ul class="course">
+        @foreach (var course in Model)
+        {
+            <li>
+                <div class="date">
+                    <div class="month">
+                        @course.DateTime.ToString("MM")
+                    </div>
+                    <div class="day">
+                        @course.DateTime.ToString("dd")
+                    </div>
+                </div>
+                <div class="details">
+                    <span class="lecture">
+                        @course.LectureName
+                    </span>
+                    <br />
+                    <span class="category">
+                        @course.Category.Name
+                    </span>
+                </div>
+                <div class="action">
+                    <a href="~/Courses/DeleteMine?id=@course.Id">Delete</a>
+                    <a href="~/Courses/EditMine?id=@course.Id">Edit</a>
+                </div>
+            </li>
+        }
+    </ul>
+</div>
+
