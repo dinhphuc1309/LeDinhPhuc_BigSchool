@@ -18,10 +18,10 @@ namespace LeDinhPhuc_BigSchool.Controllers
             BigSchoolContext context = new BigSchoolContext();
             if (context.Attendances.Any(p => p.Attendee == userID && p.CourseId == attendanceDto.Id))
             {
-                //context.Attendances.Remove(context.Attendances.SingleOrDefault(p => p.Attendee == userID && p.CourseId == attendanceDto.Id));
-                //context.SaveChanges();
-                //return Ok("cancel");
-                return BadRequest("the attendance already exists");
+                context.Attendances.Remove(context.Attendances.SingleOrDefault(p => p.Attendee == userID && p.CourseId == attendanceDto.Id));
+                context.SaveChanges();
+                return Ok("cancel");
+
             }
             var attendance = new Attendance()
             {
