@@ -41,7 +41,7 @@ namespace LeDinhPhuc_BigSchool.Controllers
 
             context.Courses.Add(objCourse);
             context.SaveChanges();
-            //test
+            
             return RedirectToAction("Index", "Home");
         }
 
