@@ -12,6 +12,7 @@ namespace LeDinhPhuc_BigSchool.Controllers
 {
     public class CoursesController : Controller
     {
+        //chấm bài
         BigSchoolContext context = new BigSchoolContext();
         // GET: Courses
         public ActionResult Create()
