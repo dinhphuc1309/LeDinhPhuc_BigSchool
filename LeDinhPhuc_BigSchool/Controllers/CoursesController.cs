@@ -74,25 +74,19 @@ namespace LeDinhPhuc_BigSchool.Controllers
             return View(courses);
         }
 
-        public void setViewBag(int? selectedId = null)
-        {
-         
-            ViewBag.CategoryId = new SelectList(context.Categories.ToList(), "Id", "Name", selectedId);
-        }
+    
 
         public ActionResult EditMine(int Id)
         {
-           
-            var model = context.Courses.Find(Id);
-            setViewBag(model.CategoryId);
-            return View(model);
+            Course objCourse = new Course();
+            objCourse = context.Courses.Find(Id);
+            objCourse.ListCategory = context.Categories.ToList();
+            return View(objCourse);
         }
         [Authorize]
         [HttpPost]
         public ActionResult EditMine(Course model)
         {
-        
-            setViewBag(model.CategoryId);
             var updateCourses = context.Courses.Find(model.Id);
             updateCourses.DateTime = model.DateTime;
             updateCourses.LectureName = model.LectureName;

@@ -25,10 +25,43 @@
                     <br />
                     <span class="category">
                         @course.Category.Name
+                        <button data-course-id="@course.Id" class="btn btn-default btn-sm js-tongle-attendance">Going</button>
                     </span>
                 </div>
             </li>
         }
     </ul>
 </div>
+
+
+@section scripts{
+    <script>
+            $(document).ready(function () {
+                $(".js-tongle-attendance").click(function (e) {
+                    var button = $(e.target);
+                    $.post("/api/attendances ", { Id: button.attr("data-course-id") })
+                        .done(function (result) {
+                            if (result == "cancel") {
+                                alert("Cancel register course successfully!")
+                                button
+                                    .removeClass("btn-info")
+                                    .addClass("btn-default")
+                                    .text("Return?");
+                            }
+                            else {
+                                alert("Register course successfully!")
+                                button
+                                    .removeClass("btn-default")
+                                    .addClass("btn-info")
+                                    .text("Going");
+                            }
+                        }).fail(function () {
+                            alert("Something fail");
+                        });
+                });
+
+                
+            });
+    </script>
+}
 
